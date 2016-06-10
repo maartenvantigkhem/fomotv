@@ -1,0 +1,9 @@
+- model: main.winner
+  pk: 1
+  fields:
+    create_date: '2015-10-10'
+    user: 2
+    competition: 1
+    prize_group: 1
+    prize_type: "bp"
+    code: "8e28bd91-3667-4b65-9ef3-f2f28dac00ec"

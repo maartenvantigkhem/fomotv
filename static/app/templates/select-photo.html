@@ -1,0 +1,74 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()" ></ng-include>
+
+<div class="sb-slidebar sb-left">
+			<div class="pading-sidebar">
+               <div id="options">
+                <h4> Albums</h4>
+                <ul class="nav nav-list option-set clearfix" id="filters"  data-option-key="filter">
+            <ul class="nav nav-list tree">
+                    <li ng-repeat="a in albums" >
+                        <a href="" ng-click="showPhotoList($index)" ng-class="$index == selectedAlbum ? 'selected':''">{{ a.name }}</a></li>
+                </ul>
+
+        </ul>
+                 </div>
+            </div>
+</div>
+<section class="push-on-mobile" id="sb-site">
+ 	<section class="header-page">
+    	<div class="container">
+    		<span class="icon-picture"></span><h3>Albums</h3>
+            <!-- <a type="submit" class="button-fill-yellow" ng-click="uploadPhoto()" >Upload Photo</a> -->
+    	</div>
+    </section>
+    <section class="black-bg">
+    	<div class="container mobile">
+        	<div id="filter">
+        	<div class="row">
+                <a href="" class="nav-button sb-toggle-left categories-btn button-border" type="button" >
+                <span class="icon-list"></span>Select Photo</a>
+
+            	<div class="col-md-3 hide-mobile">
+                <div id="options">
+                <h4> Albums</h4>
+                <ul class="nav nav-list option-set clearfix" id="filters"  data-option-key="filter">
+                <ul class="nav nav-list tree">
+
+                     <li ng-repeat="a in albums" >
+                        <a href="" ng-click="showPhotoList($index)" ng-class="$index == selectedAlbum ? 'selected':''" >{{ a.name }}</a></li>
+                </ul>
+
+
+
+
+        </ul>
+                 </div>
+                </div>
+                <div class="col-md-9">
+                  <div id="container">
+
+
+                    <div class="element garden" ng-repeat="p in photos" >
+                    <div class="prize-item" >
+                        <a href="" ng-click="selectPhoto($index)">
+							<div class="album-photo">
+							<img ng-src="{{ p.picture }}" alt="" title="" />
+							<div class="prize-content">
+                                <div class="icon-cloud-download"></div>
+                            </div>
+                            </div>
+                            </a>
+						</div>
+                       </div>
+                </div>
+            </div>
+
+
+          	</div>
+            </div>
+        </div>
+	</section>
+
+
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()" ></ng-include>

@@ -1,0 +1,310 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<div class="modal fade" id="click-tip-popup" styletabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog black" style="margin-top:50px; width: 450;">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+                <img src="/static/img/prized_voting.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="share-opt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog black">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Share photo with...</h4>
+            </div>
+            <div class="modal-body">
+                <a href="" ng-click="fbShare()" id="facebook"><i class="fa fa-facebook-square"></i>Share with
+                    facebook</a>
+                <a href="" ng-click="pinShare()" id="pinterest"><i class="fa fa-instagram"></i>Share with Pinterest</a>
+                <a href=""
+                   ng-href="https://twitter.com/intent/tweet?text={{ shareText }}&url={{ currentUrl | encodeURIComponent }}"
+                   id="twitter"><i class="fa fa-twitter-square"></i>Share with twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="abuse-opt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog black">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Report this photo</h4>
+            </div>
+            <div class="modal-body">
+                <a href="" ng-click="sendAbuse('source')" class="buton-regular"> Photo from another source</a>
+                <a href="" ng-click="sendAbuse('inappropriate')" class="buton-regular">Inappropriate photo</a>
+                <a href="" ng-click="sendAbuse('notrelevant')" class="buton-regular">not relevent to the contest</a>
+                <a href="" ng-click="sendAbuse('spam')" class="buton-regular">this is a spam</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="push-on-mobile" id="sb-site">
+
+<section class="black-bg" >
+    <div class="container mobile">
+        <div class="vote-photo">
+			<div class="fill-div" id="numero2">	
+				<h3 class="bold">Competition <span id="numero1" class="competition-name" ng-bind="'#' + competition.name"></span></h3>
+				
+				<!--ElasticStack Code - This is the Actual Competition Window.-->
+				<ul id="elasticstack" class="elasticstack">
+					
+					<!--Ask whether user wants to play the competition.-->
+					<li ng-if="!introViewed" data-type="intro">
+						<div class="updown labelLike">Yes</div>
+                        <div class="slideshow">
+                            <div class="competition1">
+                                <img  ng-src="{{ competition.image }}" alt="">
+                                <div class="captions" ng-click="showGifPopup()">
+                                    <div class="captions-title" ng-bind="competition.name"></div>
+                                    <div class="captions-subtitle" ng-bind="competition.description" ></div>
+
+                                    <div class="captions-bottom">Swipe to play</div>
+                                    <div class="img-swipe">
+										<br>
+                                        RIGHT FOR YES. LEFT FOR NO.
+                                    </div>
+                                </div>
+                               <!--
+							<h3>Play this competition</h3>
+							<h5 ng-bind="'#' + competition.name"></h5>
+							<img class="swipe-explainer" src="/static/img/swipetoplay.png">
+							-->
+						    </div>
+                        </div>
+						<div class="updown labelDisLike">No</div>
+					</li>
+					
+					<!--Play the actual competition.-->
+					<li ng-repeat="slide in photos" vote-carousel data-photo-id="{{ slide.id }}">
+						<div class="updown labelLike">Yes</div>
+						<img ng-src="{{ slide.image }}" style="width:512px; height:512px;" alt=""/>
+						<div class="updown labelDisLike">No</div>
+						<!--
+						<div class="vote-thumbs">
+							<a class="vote-yes icon-like"></a>
+							<a class="vote-no icon-dislike"></a>
+						</div>
+						-->
+					</li>
+				</ul>
+			</div>
+			<div class="no-more-items">
+                That’s it for this competition… 
+                <div class="buttons-group">
+					<div class="group-button">
+						<a href="" ng-click="selectPhotoFromDesktop(competition.id)"
+                           class="buton-border-white">UPLOAD YOUR PHOTO </a>
+                    	<span class="sub-text-button">for 2 chances to win </span>
+                    </div>
+                    <a href="/#!/shop"  class="buton-border-white">VIEW PRIZES</a>
+                    <a href="" ng-click="lookAtPhotoAgain()" class="buton-border-white">Look At Photos Again</a>
+                </div>
+            </div>	
+        </div>
+        <div class="upload-via-mobile-in">
+
+            <div class="social-uploads">
+                <div class="social-uploads-cell">
+                    <a href="" ng-click="selectPhoto('facebook', competition.id)"><span class="social-icon" id="facebook"><i
+                            class="fa fa-facebook-square"></i></span></a>
+                </div>
+                <div class="social-uploads-cell">
+                    <a href="" ng-click="selectPhoto('instagram', competition.id)"><span class="social-icon" id="instagram"><i
+                            class="fa fa-instagram"></i></span></a>
+                </div>
+                <div class="social-uploads-cell">
+                    <a href="" ng-click="selectPhotoFromDesktop(competition.id)"><span class="social-icon" id="camera"><i
+                            class="fa fa-camera"></i></span></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="prizes-sale">
+            <h4 class="line-bottom">Prizes on sale</h4>
+
+            <div class="best-photo-prices-col">
+                <h5 id="numero3"> Best Photo <font color="#FFAE00">Prizes</font></h5>
+                <div ng-controller="PrizeController" class="main-gallery js-flickity wow fadeIn"
+                     data-flickity-options='{ "cellAlign": "left", "resize": "false", "contain": "true", "pageDots": "false"}'
+                     data-wow-delay="0.7s">
+                    <div ng-repeat="p in bestPhotoPrizes" product-carousel class="gallery-cell prize-item240">
+                        <a ng-href="/#!/prize/{{ p.id }}/">
+                            <div class="random-voter240">
+                                <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="best-photo-prices-col">
+                <h5> Top Voter <font color="#FFAE00">Prizes</font></h5>
+                <div ng-controller="PrizeController" class="main-gallery js-flickity wow fadeIn"
+                     data-flickity-options='{ "cellAlign": "left", "resize": "false", "contain": "true", "pageDots": "false"}'
+                     data-wow-delay="0.7s">
+                    <div ng-repeat="p in randomVotePrizes" product-carousel class="gallery-cell prize-item240">
+                        <a ng-href="/#!/prize/{{ p.id }}/">
+                            <div class="random-voter240">
+                                <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-photos">
+            <h4 class="line-bottom">Upload Photos From</h4>
+
+            <div class="social-uploads" id="numero4">
+                <div class="social-uploads-cell">
+                    <a href="" ng-click="selectPhoto('facebook', competition.id)"><span class="social-icon" id="facebook"><i
+                            class="fa fa-facebook-square"></i></span></a>
+                </div>
+                <div class="social-uploads-cell">
+                    <a href="" ng-click="selectPhoto('instagram', competition.id)"><span class="social-icon" id="instagram"><i
+                            class="fa fa-instagram"></i></span></a>
+                </div>
+                <div class="social-uploads-cell">
+                    <a href="" ng-click="selectPhotoFromDesktop(competition.id)"><span class="social-icon" id="camera"><i
+                            class="fa fa-camera"></i></span></a>
+                </div>
+            </div>
+            <div class="share-report" id="numero5">
+                <div class="share-report-captions">
+                    <h4>Share this photo</h4>
+                    <h5>get 10 more votes</h5>
+                </div>
+                <div class="share-report-icon">
+                    <a href="" data-toggle="modal" data-target="#share-opt"><span class="icon-share" id="camera"></span></a>
+                </div>
+            </div>
+            <div class="share-report-icon1">
+                <h6>Report Abuse </h6> <a href="" data-toggle="modal" data-target="#abuse-opt"><span class="icon-flag"
+                                                                                                     id="camera"></span></a>
+            </div>
+            <div class="explanation-text">
+                <h5>Competition<span class="small-yellow" ng-bind="'#' + competition.name"></span><span id="hiddendate" hidden>{{competition.end_date}}</span> ends</h5>
+				<!-- Countdown Timer -->
+				<ul class="small-yellow" id="countdowntimer">
+					<li><span class="days">00</span><p class="days_text">Days</p></li>
+					<li class="seperator">:</li>
+					<li><span class="hours">00</span><p class="hours_text">Hours</p></li>
+					<li class="seperator">:</li>
+					<li><span class="minutes">00</span><p class="minutes_text">Minutes</p></li>
+					<li class="seperator">:</li>
+					<li><span class="seconds">00</span><p class="seconds_text">Seconds</p></li>
+				</ul>
+
+				<!-- Countdown Timer -->
+			</div>
+		</div>
+    </div>
+</section>
+
+<section class="black-bg">
+    <div class="container">
+        <div class="heading-sect wow fadeIn" data-wow-delay="0.4s">
+            <h2 id="numero6"><a href="" ng-click="selectPhotoFromDesktop()">Enter a photo</a> or <a href="">vote</a></h2>
+            <h4>in photo competitions to win one of these prizes:</h4>
+        </div>
+		
+        <div ng-controller="PrizeController" class="main-gallery js-flickity wow fadeIn"
+             data-flickity-options='{ "cellAlign": "left", "contain": "true", "pageDots": "false"}'
+             data-wow-delay="0.7s">
+            <div class="gallery-cell prize-item" ng-repeat="p in getPrizes()" product-carousel>
+				<a id="p1" ng-href="/#!/prize/{{ p.id }}/">
+                    <div ng-class="p.prize_type=='bp'?'best-photo':'random-voter'">
+                        <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+
+                        <div class="prize-content">
+                            <div ng-class="p.prize_type=='bp'?'best-photo-prices':'random-voter-prices'">
+                                <div ng-if="p.sale_price > 0 && p.discount_amount> 0" class="old-price">&nbsp;${{ p.retail_price | number:0 }}&nbsp;</div>
+                                <div ng-if="p.sale_price > 0 && p.discount_amount> 0" class="old-new">${{ p.sale_price }}</div>
+                                <div ng-if="!p.discount_amount" class="old-new">${{ p.retail_price | number:0}}</div>
+                            </div>
+                            <div ng-class="p.prize_type=='bp'?'prize-best-photo':'prize-random-voter'"
+                                 ng-bind="p.prize_type=='bp'?'Best Photo':'Random Voter'">
+                            </div>
+                            <p ng-bind="p.hover_description"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+		</div>
+	</div>
+</section>
+
+<!-- Guided Tour Content -->
+<ol id="joyRideTipContent">
+	<li data-id="numero1" data-class="so-awesome" data-text="Next" class="custom" data-options="tipLocation:right">
+		<h5>This is the Competition Name</h5>
+		<p>Upload photos on this topic</p>
+	</li>
+
+	<li data-id="numero2" data-button="Next" data-options="tipLocation:right;tipAnimation:fade">
+		<h5>Swipe Right to Vote Yes</h5>
+		<p>Drag the image to the right for <font style="color: rgba(255,255,255,1.00); background-color: rgba(0,203,0,1.00); padding:2px;">YES</font>, left for <font style="color: rgba(255,255,255,1.00); background-color: rgba(255,36,40,1.00); padding:2px;">NO</font></p>
+	</li>
+
+	<li data-id="numero3" data-options="tipLocation:top" data-button="Next">
+		<h5>Here Are The Prizes</h5>
+		<p>Swipe through to see the one you like</p>
+	</li>
+
+	<li data-id="numero4" data-button="Next" data-options="tipLocation:bottom">
+		<h5>Upload Photos Here</h5>
+		<p>You can upload photos from Facebook, Instagram or from your library</p>
+	</li>
+
+	<li data-id="numero5" data-button="Next" data-options="tipLocation:right">
+		<h5>You'll get more votes for sharing</h5>
+		<p>The more you share, the more likely you'll win</p>
+	</li>
+
+	<li data-id="numero6" data-button="Next" data-options="tipLocation:top">
+		<h5>Read About the Products Here</h5>
+		<p>You can also click on a prize for pop up information</p>
+	</li>
+
+	<li data-id="numero7" data-button="Close" data-options="tipLocation:top">
+		<h5>Everything About Us is Here</h5>
+		<p>You can also click on a prize for pop up information</p>
+	</li>
+</ol>
+
+
+<script>
+	$(window).load(function() {
+		$('#joyRideTipContent').joyride({
+			autoStart: true,
+			postStepCallback: function(index, tip) {
+				if (index == 2) {
+					$(this).joyride('set_li', false, 1);
+				}
+			},
+			modal: true,
+			expose: true
+		});
+		
+	});
+</script>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

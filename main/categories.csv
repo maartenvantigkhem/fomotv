@@ -1,0 +1,121 @@
+1;1;CLOTHING 
+2;2;Womens
+3;3;CLOTHING 
+4;4;Dresses 
+5;4;Tops 
+6;4;Jumpers & Cardigans 
+7;4;Tshirts & Singlets 
+8;4;Coats & Jackets 
+9;4;Pants 
+10;4;Skirts 
+11;4;Jeans 
+12;4;Swimwear 
+13;4;Sports Tights 
+14;4;Jumpsuits & Playsuits 
+15;4;Lingerie 
+16;4;Sleepwear 
+17;3;SHOES 
+18;4;Boots 
+19;4;Flats 
+20;4;Heels 
+21;4;Sandals 
+22;4;Sneakers 
+23;4;Performance Shoes 
+24;4;Wedges 
+25;4;Casual Shoes 
+26;4;Slippers & Accessories 
+27;4;Thongs 
+28;3;ACCESSORIES 
+29;4;Bags 
+30;4;Jewellery 
+31;4;Scarves & Gloves 
+32;4;Watches 
+33;4;Hats & Caps 
+34;4;Lingerie 
+35;4;Sunglasses 
+36;4;Socks & Tights 
+37;4;Wallets 
+38;4;Belts 
+39;4;Hair Accessories 
+40;4;Tech Accessories 
+41;4;Sports Accessories 
+42;3;BEAUTY 
+43;4;Perfume 
+44;4;Make Up 
+45;4;Hands & Feet 
+46;;
+47;3;SPORTS 
+48;4;Pants 
+49;4;Sport Tights 
+50;4;Tshirts & Singlets 
+51;4;Performance Shoes 
+52;4;Sneakers 
+53;4;Sweats & Hoodies 
+54;4;Coats & Jackets 
+55;4;Bags 
+56;4;Shorts 
+57;4;Tops 
+58;4;Clothing 
+59;4;Footwear 
+60;4;Accessories 
+61;;
+62;2;MEN
+63;3;CLOTHING 
+64;4;T-Shirts & Singlets 
+65;4;Shirts & Polos 
+66;4;Pants 
+67;4;Coats & Jackets 
+68;4;Sweats & Hoodies 
+69;4;Jumpers & Cardigans 
+70;4;Shorts 
+71;4;Sweat Pants 
+72;4;Jeans 
+73;4;Swimwear 
+74;4;Sleepwear 
+75;4;Suits & Blazers 
+76;;
+77;3;SHOES 
+78;4;Sneakers 
+79;4;Dress Shoes 
+80;4;Boots 
+81;4;Casual Shoes 
+82;4;Performance Shoes 
+83;4;Flats 
+84;4;Sandals 
+85;4;Thongs 
+86;4;Slippers & Accessories 
+87;; 
+88;3;ACCESSORIES 
+89;4;Bags 
+90;4;Underwear & Socks 
+91;4;Hats & Caps 
+92;4;Belts 
+93;4;Watches 
+94;4;Wallets 
+95;4;Ties & Formal 
+96;4;Sunglasses 
+97;4;Jewellery 
+98;4;Scarves & Gloves 
+99;4;Tech Accessories 
+100;;
+101;3;BEAUTY 
+102;4;Perfume 
+103;4;Hair Care 
+104;4;Face 
+105;4;Shave 
+106;;
+107;3;SPORTS 
+108;4;T-shirts & Singlets 
+109;4;Performance Shoes 
+110;4;Bags 
+111;4;Sneakers 
+112;4;Pants 
+113;4;Sweats & Hoodies 
+114;4;Underwear & Socks 
+115;4;Hats & Caps 
+116;4;Compression 
+117;4;Accessories 
+118;4;Bike accessories
+119;; 
+120;1;GADGETS
+121;1;SPORT & OUTDOORS

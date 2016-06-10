@@ -1,0 +1,45 @@
+<ng-include src="'/static/app/templates/theatermediaclanheader.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <img src="/static/img/theatermediaclan.jpg"/ style="height:100px">
+        <h3>Theatre Media Clan Gathering Merch</h3>
+        <h4>buy now and we’ll give $7 to support the top voted TM project on the Facebook feed<br>
+            (and just… cool merch)</h4>
+    </div>
+</section>
+<section class="black-bg">
+    <div class="container mobile">
+        <div id="filter">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="container" class="grid">
+                        <div class="grid-sizer"></div>
+                        <div class="element grid-item" ng-repeat="p in prizes track by $index">
+                            <div class="prize-item">
+                               
+                                <div class="random-voter-filter">
+                                    <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+                                    <div class="prize-content">
+                                        <h5 ng-bind="p.name"></h5>
+                                        <p class="left-align" ng-bind="p.hoverDescription" ></p>
+                                    </div>
+                                </div>
+                                
+                                 <a ng-click=addToCart(p) >
+                                    <div class="best-photo-prices" ng-show="showPrice">
+                                        <div class="just-price" style="cursor: pointer">
+                                        <span class="icon-basket"></span>  ${{ p.sale_price }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

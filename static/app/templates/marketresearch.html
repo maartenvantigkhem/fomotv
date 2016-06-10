@@ -1,0 +1,61 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <span class="icon-basket"></span>
+
+        <h3>CHOOSE YOUR PREFERENCE</h3>
+    </div>
+</section>
+<section class="black-bg">
+    <div class="container mobile">
+        <div id="filter">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="container" class="grid">
+
+                        <div class="grid-sizer"></div>
+                        <div class="element grid-item">
+                            <div class="prize-item">
+                                <a href="#!/colortrend"  >
+                                    <div class="random-voter-filter">
+                                        <img src="https://color.adobe.com/build2.0.0-buildNo/resource/img/kuler/color_wheel_730.png" alt="Some color image goes here" title=""/>
+                                        <div class="prize-content">
+                                            <h5>Click here to Choose your favorite color</h5>
+                                            <p class="left-align">"Help us by choosing your favorite color"</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="element grid-item" ng-repeat="d in designs track by $index">
+                            <div class="prize-item">
+                                <a ng-href="{{ detailLink + d.design_ID + '/' }}"  >
+                                    <div class="random-voter-filter">
+                                        <img ng-src="{{ d.design_thumbnail }}" alt="" title=""/>
+
+                                        <div class="prize-content">
+
+                                            <h5 ng-bind="d.design_name"></h5>
+
+                                            <p class="left-align" ng-bind="d.design_description" ></p>
+                                        </div>
+                                    </div>
+                                    <div class="best-photo-prices" ng-show="showPrice">
+                                        <div class="just-price">$0</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

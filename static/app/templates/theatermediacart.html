@@ -1,0 +1,65 @@
+<ng-include src="'/static/app/templates/theatermediaclanheader.html'" onload="onHeaderLoad()" ></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+    <section class="header-page">
+            <div class="container">
+              <span class="icon-bag"></span><h3> THEATER MEDIA CLAN - Shopping cart</h3>
+            </div>
+    </section>
+ 	<section class="black-bg">
+        <div class="tanks-well" ng-show="vm.ngCart.getTotalItems() === 0">
+            Your cart is empty
+        </div>
+
+            <div class="cart-item" ng-repeat="item in vm.ngCart.getCart().items track by $index" >
+                <div class="remove-sect">
+                <a href=""  ng-click="vm.ngCart.removeItem($index)" ><i class="fa fa-trash"></i></a>
+                </div>
+            	<div class="product-img-sect">
+                    <a ng-href="" ><img ng-src="{{ item.getData().image }}" style="width: 95px;" alt=""></a>
+                </div>
+                <div class="product-name-sect">
+                <p>{{ item.getName() }}<br/>Size: {{ item.getData().size }}<br/>Color: {{ item.getData().color }}</p>
+                </div>
+                <div class="quantity-sect">
+                	 <span class="glyphicon glyphicon-minus"  ng-class="{{ item.getQuantity()==1?'disabled':''}}"
+                           ng-click="vm.decreaseQuantity(item)"></span>&nbsp;&nbsp;
+                {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span>
+                </div>
+                <div class="price-sect">
+                <p>{{ item.getPrice() | currency}}</p>
+                </div>
+                <div class="total-sect">
+                <p>{{ item.getTotal() | currency }}</p>
+                </div>
+            </div>
+            <div class="update-continue">
+                <div class="pull-left">
+                    <a href="/#!/theatermediaclan/"  class="button-border">Continue Shopping</a>
+                </div>
+			</div>
+            <div class="row" ng-show="vm.ngCart.getTotalItems() > 0">
+				<div class="pull-right">
+					<div class="total-block">
+						<p class="subtotal">Subtotal: <span class="value">{{ vm.ngCart.getSubTotal() | currency }}</span></p>
+                        <input type="radio" ng-model="requireshipping" ng-value="false" ng-change='updateCart(false)' ng-init="requireshipping=true"><span class="subtotal"> Pickup<span>  
+                        <input type="radio" ng-model="requireshipping" ng-value="true" ng-change='updateCart(true)' ng-init="requireshipping=false"><span class="subtotal"> Ship to my address<span>
+						<p class="subtotal" ng-if="requireshipping">Shipping: <span class="value">{{ vm.ngCart.getShipping() | currency }}</span></p>
+						<p class="total">Total: <span class="value">{{ vm.ngCart.totalCost() | currency }}</span></p>
+						<!--
+						<div class="block">
+							<a href="" ng-click="vm.goToCheckout()" type="submit" class="button-fill-yellow">Proceed to Checkout</a>
+						</div>
+						-->
+						<div class="block">
+							<a href="" ng-click="vm.goToPaypalStart()">
+								<img src="/static/img/btn_xpressCheckout.gif" align="left" style="margin-right:7px;">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

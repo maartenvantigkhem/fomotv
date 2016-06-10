@@ -1,0 +1,182 @@
+.ns-box {
+	position: fixed;
+	padding: 22px;
+	line-height: 1.4;
+	z-index: 1000;
+	pointer-events: none;
+	color: rgba(250,251,255,0.95);
+	font-size: 90%;
+	font-family: 'Akz-Light';
+}
+
+.ns-box.ns-show {
+	pointer-events: auto;
+}
+
+.ns-box a {
+	color: inherit;
+	opacity: 0.7;
+	font-weight: 700;
+}
+
+.ns-box a:hover,
+.ns-box a:focus {
+	opacity: 1;
+}
+
+.ns-box p {
+	margin: 0;
+}
+
+.ns-box.ns-show,
+.ns-box.ns-visible {
+	pointer-events: auto;
+}
+
+.ns-close {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	overflow: hidden;
+	text-indent: 100%;
+	cursor: pointer;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.ns-close:hover, 
+.ns-close:focus {
+	outline: none;
+}
+
+.ns-close::before,
+.ns-close::after {
+	content: '';
+	position: absolute;
+	width: 3px;
+	height: 60%;
+	top: 50%;
+	left: 50%;
+	background: #6e6e6e;
+}
+
+.ns-close:hover::before,
+.ns-close:hover::after {
+	background: #fff;
+}
+
+.ns-close::before {
+	-webkit-transform: translate(-50%,-50%) rotate(45deg);
+	transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.ns-close::after {
+	-webkit-transform: translate(-50%,-50%) rotate(-45deg);
+	transform: translate(-50%,-50%) rotate(-45deg);
+}
+.notification-shape {
+	position: fixed;
+	z-index: 1000;
+}
+
+.notification-shape svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+[class^="ns-effect-"].ns-other.ns-hide,
+[class*=" ns-effect-"].ns-other.ns-hide {
+	-webkit-animation-direction: reverse;
+	animation-direction: reverse;
+}
+
+.ns-effect-cornerexpand {
+	width: 200px;
+	min-height: 200px;
+	background-color: rgba(81,81,81,0.90);
+	text-align: center;
+	position: relative;
+	z-index: 100;
+}
+
+.shape-box {
+	right: 0;
+	width: 200px;
+	min-height: 200px;
+	bottom: 0px;
+}
+
+.shape-box path {
+	fill:  rgba(81,81,81,0.90) ;
+}
+
+.ns-effect-cornerexpand .icon {
+	color: #FFAE00;
+	display: block;
+	width: 70px;
+	height: 70px;
+	line-height: 70px;
+	margin: 0.5em auto 1.25em;
+	border-radius: 50%;
+	font-size: 27px;
+	border: thin solid rgba(255,174,0,1.00);
+}
+
+.ns-effect-cornerexpand .ns-close {
+	top: 15px;
+	right: 15px;
+	content: "\f00d";
+    font-family: FontAwesome;
+	color:rgba(51,51,51,1.00);
+}
+
+.ns-effect-cornerexpand .ns-close::before,
+.ns-effect-cornerexpand .ns-close::after {
+    background: rgba(51,51,51,1.00);
+}
+
+.ns-effect-cornerexpand .ns-close:hover::before,
+.ns-effect-cornerexpand .ns-close:hover::after {
+	background-color: #8E8E8E;
+}
+
+.ns-effect-cornerexpand a {
+	color: #3b5163;
+	opacity: 1;
+}
+
+.ns-effect-cornerexpand a:hover,
+.ns-effect-cornerexpand a:focus {
+	color: #fff;
+}
+
+.ns-effect-cornerexpand.ns-show,
+.ns-effect-cornerexpand.ns-hide {
+	-webkit-animation-name: animScale;
+	animation-name: animScale;
+	-webkit-animation-duration: 0.3s;
+	animation-duration: 0.3s;
+}
+
+.ns-effect-cornerexpand.ns-show {
+	opacity: 0;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+}
+
+@-webkit-keyframes animScale {
+	0% { opacity: 0; -webkit-transform: scale3d(0.4,0.4,1); }
+	100% { opacity: 1; -webkit-transform: scale3d(1,1,1); }
+}
+
+@keyframes animScale {
+	0% { opacity: 0; -webkit-transform: scale3d(0.4,0.4,1); transform: scale3d(0.4,0.4,1); }
+	100% { opacity: 1; -webkit-transform: scale3d(1,1,1); transform: scale3d(1,1,1); }
+}

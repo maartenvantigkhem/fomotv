@@ -1,0 +1,115 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <h3> Order Review and Confirmation</h3>
+    </div>
+</section>
+<section class="black-bg">
+<div class="container mobile">
+    <h3>Personal details</h3>
+
+        <table class="table">
+        <tbody>
+            <tr>
+                <td>Email</td>
+                <td ng-bind="vm.order.email"></td>
+            </tr>
+            <tr><td colspan="2"><h3>Billing details</h3></td></tr>
+            <tr>
+                <td>First Name</td>
+                <td ng-bind="vm.order.b_first_name"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td ng-bind="vm.order.b_last_name"></td>
+            </tr>
+            <tr><td>ZIP code</td><td ng-bind="vm.order.b_zip"></td></tr>
+            <tr><td>Country</td><td ng-bind="vm.order.b_countryname"></td></tr>
+            <tr><td>State</td><td ng-bind="vm.order.b_state"></td></tr>
+            <tr><td>City</td><td ng-bind="vm.order.b_city"></td></tr>
+            <tr><td>Street Address</td><td ng-bind="vm.order.b_street + vm.order.b_street2"></td></tr>
+        </tbody>
+        </table>
+
+        <h3>Shipping details</h3>
+        <table class="table">
+        <tbody>
+            <tr>
+                <td>First Name</td>
+                <td ng-bind="vm.order.first_name"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td ng-bind="vm.order.last_name"></td>
+            </tr>
+            <tr><td>ZIP code</td><td ng-bind="vm.order.shiptozip"></td></tr>
+            <tr><td>Country</td><td ng-bind="vm.order.shiptocountryname"></td></tr>
+            <tr><td>State</td><td ng-bind="vm.order.shiptostate"></td></tr>
+            <tr><td>City</td><td ng-bind="vm.order.shiptocity"></td></tr>
+            <tr><td>Street Address</td><td ng-bind="vm.order.shiptostreet + vm.order.shiptostreet2"></td></tr>
+        </tbody>
+        </table>
+
+        <h3>Ordered Items</h3>
+
+        <table class="table table-striped vm.ngCart cart">
+
+        <thead>
+        <tr>
+            <th></th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr ng-show="vm.ngCart.getTax()">
+            <td></td>
+            <td></td>
+            <td>Tax ({{ vm.ngCart.getTaxRate() }}%):</td>
+            <td>{{ vm.ngCart.getTax() | currency }}</td>
+        </tr>
+        <tr ng-show="vm.ngCart.getShipping()">
+            <td></td>
+            <td></td>
+            <td>Shipping:</td>
+            <td>{{ vm.ngCart.getShipping() | currency }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{ vm.ngCart.totalCost() | currency }}</td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr ng-repeat="item in vm.ngCart.getCart().items track by $index">
+            <td>{{ item.getName() }}</td>
+            <td>{{ item.getQuantity() | number }}</td>
+            <td>{{ item.getPrice() | currency}}</td>
+            <td>{{ item.getTotal() | currency }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+        <div class="add-bag-opt-box">
+            	<form>
+                    <div class="add-bag-opt">
+                        <button type="submit" ng-click="vm.cancelOrder()" class="bnt-add-bag-continue add-to-bag-status_close">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="add-bag-opt">
+                        <button type="submit" ng-click="vm.confirmOrder()" class="bnt-add-bag-checkout add-to-bag-status_close">
+                            Confirm
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+</div>
+</section>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()" ></ng-include>

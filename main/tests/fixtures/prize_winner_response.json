@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Product test 1",
+        "size_type": "US",
+        "discount_amount": null,
+        "sizes": ["XS"],
+        "id": 1,
+        "photos": [],
+        "colors": [],
+        "sale_price": 10,
+        "retail_price": 10.00,
+        "thumbnail": null,
+        "description": "test",
+        "prize_type": "bp",
+        "hover_description": null
+    }
+]

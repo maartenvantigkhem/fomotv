@@ -1,0 +1,96 @@
+    .slider {
+    width: 100%;
+    height: 612px;
+    overflow: hidden;
+    position: relative;
+    border: 0;
+    margin: 0;
+    padding:0;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.compet-mid-box {background: none;}
+
+.my-upload-box input[type='file'] {
+	position:absolute;
+	width:1px;
+	height:1px;
+	top:0;
+	left:0;
+	opacity:0;
+	cursor:pointer;
+}
+
+.cropArea {
+  background: #FFFFFF;
+  overflow: hidden;
+  width:450px;
+  height:450px;
+}
+
+
+.slideshow .competition1 {
+	float: left;
+	background-color: #3c3c3c;
+	position: relative;
+}
+.slideshow .competition1  img {
+	width: 100%;
+}
+.slideshow .competition1  .captions {
+	position: absolute;
+	text-align: center;
+	background-color: rgba(0,0,0,0.6);
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: rgba(255,255,255,1.00);
+	left: 0px;
+	bottom: 0px;
+}
+.slideshow .competition1  .captions .captions-title {
+	text-transform: uppercase;
+	font-size: 4em;
+	line-height: 1em;
+	position: absolute;
+	top: 16%;
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	font-family: Akz-Bold;
+}
+
+.competition1 .captions .captions-subtitle {
+	font-size: 2.2em;
+	text-transform: uppercase;
+	font-family: Akz-Light;
+	padding-left: 5%;
+	padding-right: 5%;
+	position: absolute;
+	width: 100%;
+	top: 45%;
+	font-weight: 100;
+}
+.competition1 .captions .captions-bottom {
+	width: 100%;
+	position: absolute;
+	bottom: 20%;
+	color: rgba(255,190,0,1.00);
+	font-size: 2.2em;
+	text-transform: uppercase;
+	font-family: Akz-Medium;
+}
+.competition1 .captions .img-swipe {
+	position: absolute;
+	bottom: 5%;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}

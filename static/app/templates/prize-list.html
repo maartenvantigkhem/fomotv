@@ -1,0 +1,107 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<div class="sb-slidebar sb-left">
+    <div class="pading-sidebar">
+        <div id="options">
+            <h4> Categories</h4>
+            <ul class="nav nav-list option-set clearfix" id="filters" data-option-key="filter">
+                <li ng-repeat="c1 in vm.categories track by $index"><label class="tree-toggler nav-header main-cat"
+                                                           ng-bind="c1.name" ng-click="vm.showChildProducts(c1.id)"></label>
+                    <ul class="nav nav-list tree" >
+                        <li ng-repeat="c2 in c1.children track by $index"><label class="tree-toggler nav-header main-subcat"
+                                                                 ng-bind="c2.name" ng-click="vm.showChildProducts(c2.id)"></label>
+                            <ul class="nav nav-list tree" >
+                                <li ng-repeat="c3 in c2.children track by $index"><label
+                                        class="tree-toggler nav-header main-subcat-sub" ng-bind="c3.name" ng-click="vm.showChildProducts(c3.id)">
+                                </label>
+                                    <ul class="nav nav-list tree" style="display:none">
+                                        <li ng-repeat="c4 in c3.children">
+                                            <a href="" ng-click="vm.showProducts(c4.id)" ng-class="c4.id==vm.selectedCategoryId?'selected':''" ng-bind="c4.name"></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <span class="icon-basket"></span>
+
+        <h3>All Prizes</h3>
+    </div>
+</section>
+<section class="black-bg">
+    <div class="container mobile">
+        <div id="filter">
+            <div class="row">
+                <a href="" class="nav-button sb-toggle-left categories-btn button-border" type="button"> <span
+                        class="icon-list"></span>Categories</a>
+
+                <div class="col-md-3 hide-mobile">
+                    <div id="options">
+                        <h4 ng-click="vm.showProducts(1)"> Categories</h4>
+                        <ul class="nav nav-list option-set clearfix" id="filters" data-option-key="filter">
+                            <li ng-repeat="c1 in vm.categories track by $index"><label class="tree-toggler nav-header main-cat"
+                                                                       ng-bind="c1.name" ng-click="vm.showChildProducts(c1.id)"></label>
+                                <ul class="nav nav-list tree"  >
+                                    <li ng-repeat="c2 in c1.children track by $index"><label class="tree-toggler nav-header main-subcat"
+                                                                             ng-bind="c2.name" ng-click="vm.showChildProducts(c2.id)"></label>
+                                        <ul class="nav nav-list tree"  >
+                                            <li ng-repeat="c3 in c2.children track by $index"><label
+                                                    class="tree-toggler nav-header main-subcat-sub" ng-bind="c3.name" ng-click="vm.showChildProducts(c3.id)">
+                                            </label>
+                                                <ul class="nav nav-list tree" style="display:none">
+                                                    <li ng-repeat="c4 in c3.children">
+                                                        <a href="" ng-click="vm.showProducts(c4.id)" ng-class="c4.id==vm.selectedCategoryId?'selected':''" ng-bind="c4.name"></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="container" class="grid">
+
+                        <div class="grid-sizer"></div>
+                        <div class="element grid-item" ng-repeat="p in vm.products track by $index">
+                            <div class="prize-item">
+                                <a href="" ng-click="vm.showProduct($index)" >
+                                    <div class="random-voter-filter">
+                                        <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+
+                                        <div class="prize-content">
+
+                                            <h5 ng-bind="p.name"></h5>
+
+                                            <p class="left-align" ng-bind="p.hoverDescription" ></p>
+                                        </div>
+                                    </div>
+                                    <div class="best-photo-prices">
+
+                                        <div class="just-price">${{ p.sale_price }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

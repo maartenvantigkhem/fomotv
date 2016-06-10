@@ -1,0 +1,119 @@
+- model: main.myuser
+  pk: 1
+  fields:
+    username: test
+    email: test@mail.ru
+    first_name: test
+    last_name: test
+    is_active: True
+
+- model: main.myuser
+  pk: 2
+  fields:
+    username: test1
+    email: test1@mail.ru
+    first_name: test1
+    last_name: test1
+    is_active: True
+    password: "md5$rxECBBG1RhWm$f5abef7aaddb148fab9145fd89639108"
+
+- model: main.myuser
+  pk: 3
+  fields:
+    username: test3
+    email: test3@mail.ru
+    first_name: test3
+    last_name: test3
+    is_active: True
+
+
+- model: main.photo
+  pk: 1
+  fields:
+    create_date: "2015-09-22"
+    author: 1
+    competition: 1
+    image: 'test'
+    active_flag: True
+
+
+- model: main.photo
+  pk: 2
+  fields:
+    create_date: "2015-10-15"
+    author: 1
+    competition: 1
+    image: 'test1'
+    active_flag: True
+
+- model: main.photo
+  pk: 3
+  fields:
+    create_date: "2015-10-15"
+    author: 1
+    competition: 1
+    image: 'test2'
+    active_flag: True
+
+
+- model: main.votehistory
+  pk: 1
+  fields:
+    create_date: "2015-10-17"
+    from_user: 3
+    to_user: 1
+    competition: 1
+    photo: 1
+    vote_count: 1
+    vote_type: 'V'
+
+- model: main.votehistory
+  pk: 2
+  fields:
+    create_date: "2015-10-17"
+    from_user: 3
+    to_user: 1
+    competition: 1
+    photo: 2
+    vote_count: 1
+    vote_type: 'V'
+
+- model: main.votehistory
+  pk: 3
+  fields:
+    create_date: "2015-10-13"
+    from_user: 3
+    to_user: 1
+    competition: 1
+    photo: 1
+    vote_count: 10
+    vote_type: 'S'
+
+- model: main.votehistory
+  pk: 4
+  fields:
+    create_date: "2015-10-17"
+    from_user: 2
+    to_user: 1
+    competition: 1
+    photo: 1
+    vote_count: 10
+    vote_type: 'S'
+
+
+- model: main.viewhistory
+  pk: 1
+  fields:
+    create_date: "2015-10-17"
+    from_user: 2
+    competition: 1
+    photo: 1
+
+
+- model: main.viewhistory
+  pk: 2
+  fields:
+    create_date: "2015-10-17"
+    from_user: 2
+    competition: 1
+    photo: 2

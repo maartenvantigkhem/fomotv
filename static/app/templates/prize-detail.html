@@ -1,0 +1,114 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+
+    <section class="product-details">
+    	<div class="container mobile">
+        	<div id="product_view">
+
+            <div class="dress-cover-box">
+            	<div class="dress-img-preview-box wow fadeInLeft">
+                           <div class="slider-for">
+                               <div ng-repeat="p in selectedPrize.photos"><img
+                                ng-src="{{ p.image }}" alt=""/></div>
+					</div>
+
+					<div class="slider-nav">
+  						<div ng-repeat="p in selectedPrize.photos"><img
+                                ng-src="{{ p.image }}" alt=""/></div>
+ 					</div>
+
+                </div>
+                <div class="dress-opt-box wow fadeInRight">
+				<h2 ng-bind="selectedPrize.name"></h2>
+					<div class="prod-price" ng-show="showPrice" ng-bind="'$'+selectedPrize.sale_price"></div>
+					<div class="social-links" ng-show="showPrice">
+						<a href="" ng-click="fbShare()" ><span class="facebook fa fa-facebook"></span></a>
+						<a ng-href="https://twitter.com/intent/tweet?text={{ shareText }}&url={{ currentUrl | encodeURIComponent }}"
+                   id="twitter" ><span class="twitter fa fa-twitter"></span></a>
+						<a href="https://plus.google.com/share?url={{ currentUrl | encodeURIComponent }}" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                ><span class="google fa fa-google-plus"></span></a>
+					</div>
+                	<form class="dress-opt-form">
+                        <div class="dress-color-select">
+                        	<div class="dress-color-box dropdown1">
+                                <div class="dress-color">
+                                    <span class="gray-clr"
+                                          ng-style="{'background-color': colorCode == null?selectedPrize.colors[0].color_code:colorCode }" ></span>
+                                </div>
+                                <p ng-bind="color == null?selectedPrize.colors[0].name:color"></p>
+
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="dropdown-box">
+                                <ul class="dress-drop-clr-list">
+                                    <li ng-repeat="c in selectedPrize.colors">
+                                        <div class="dress-color">
+                                            <span class="gray-clr"
+                                                  ng-style="{'background-color': c.color_code }"></span>
+                                        </div>
+                                        <p ng-click="selectColor(c.name, c.color_code)">{{ c.name }}</p>
+
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="dress-size-select">
+                        	<div class="dress-size-box dropdown1">
+                            	<button type="button" class="btn-us-size">US</button>
+                                <p ng-bind="size == null?'Size':size"></p>
+                            </div>
+                            <div class="dropdown-box">
+                                <ul class="dress-drop-size-list">
+                                    <li ng-repeat="s in selectedPrize.sizes">
+                                        <p ng-click="selectSize(s)"><span class="size-no">{{ s }}</span> <span class="size-type">&nbsp;</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="dress-size-guide-box">
+                        	<a class="btn-size-guide" type="button" data-toggle="modal" data-target="#sizes-guide">Size Guide</a>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="dress-add-bag-box">
+                        	<div class="calltoaction">
+
+                	        <a class="ripplelink" ng-show="showPrice"  ng-click="addToCart(selectedPrize)"  >add to bag</a>
+                            <a class="ripplelink" ng-show="!showPrice"  ng-click="selectPrize(selectedPrize)"  >select</a>
+                </div>
+                        </div>
+                        <div class="dress-detail-box">
+                        	<div class="dress-detail">
+                            	<div class="dress-detail-heading">
+                        			<h3>Details, Size & Fit </h3>
+                                    <div class="dress-detail-icon">
+                                    	<i class="fa fa-minus"></i>
+                                    </div>
+                                </div>
+                                <div class="dress-detail-cont" ng-bind-html="selectedPrize.description | nl2br">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+
+
+
+    <!-- Add to Bag Popup Start -->
+
+    <!-- Add to Bag Popup End -->
+    </section>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

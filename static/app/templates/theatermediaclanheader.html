@@ -1,0 +1,85 @@
+<nav class="nav-desktop">
+    <div class="container"> 
+        <div ng-hide="hideCartFlag" class="user-menu dropdown">
+            <div class="shopping-cart">
+                <span ng-show="ngCart.getTotalItems() > 0" ng-bind="ngCart.getTotalItems()" class="count-items"></span>
+
+                <a ng-show="ngCart.getTotalItems() == 0" href="/#!/theatermediaclan/" class="cbutton cbutton--effect-radomir nav-button" id="dLabel3" type="button"
+                     aria-haspopup="true" aria-expanded="false"> <span class="cbutton__icon "><em
+                        class="icon-basket"></em></span> <span class="cbutton__text">Play</span> </a>
+
+                <a ng-show="ngCart.getTotalItems() > 0" href="" class="cbutton cbutton--effect-radomir nav-button" id="dLabel3" type="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="cbutton__icon "><em
+                        class="icon-basket"></em></span> <span class="cbutton__text">Play</span> </a>
+                <ul ng-show="ngCart.getTotalItems() > 0" class="dropdown-menu cart" role="menu" aria-labelledby="dLabel3">
+                    <span class="arrow-dropdown"><img src="/static/img/arrow-dropdown.png"/></span>
+                    <li class="product-cart" ng-repeat="item in ngCart.getCart().items track by $index">
+                        <a>
+                            <img ng-src="{{ item.getData().image }}">
+                            <p class="name-product-cart" ng-bind="item.getName()" ></p>
+                            <p>Price<span class="value-price">{{ item.getTotal() | currency }}</span></p>
+                            <p>Size<span class="value-price">L</span></p>
+                        </a>
+                    </li>
+                    <p class="total-cart">Total<span class="total-price">{{ ngCart.totalCost() | currency }}</span></p>
+                    <a type="submit" href="/#!/theatermediacart/" class="button-fill-yellow">Proceed to Checkout</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="sb-slidebar sb-right" ng-show="Auth.isAuth()">
+    <div class="padding-sidebar">
+        <h4 ng-bind="Auth.getUsername()"></h4>
+        <a class="icon-bag"></a><span class="count-items"></span>
+        <ul class="cart-mobile" id="cart-cont">
+            <li class="product-cart" ng-repeat="item in ngCart.getCart().items track by $index">
+            <a>
+                <img ng-src="{{ item.getData().image }}">
+                <p class="name-product-cart" ng-bind="item.getName()" ></p>
+                <p>Price<span class="value-price">{{ item.getTotal() | currency }}</span></p>
+                <p>Size<span class="value-price">L</span></p>
+                </a>
+            </li>
+            <p class="total-cart">Total<span class="total-price">{{ ngCart.totalCost() | currency }}</span></p>
+            <a type="submit" href="/#!/theatermediacart/" class="button-fill-yellow">Procee1d to Checkout</a> 
+            
+        </ul>
+        <ul>
+            <li><a ng-click="logout()"><span class="icon-power"></span> Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="modal fade" id="success" tabindex="-1" style="z-index:99999" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog black">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h1>Success! You've added this item to your bag.</h1>
+                <div class="add-bag-opt-box">
+                    <form>
+                        <div class="add-bag-opt">
+                            <button data-dismiss="modal" type="submit" class="bnt-add-bag-continue">
+                                Continue
+                            </button>
+                        </div>
+                        <div class="add-bag-opt">
+                            <button type="submit" ng-click="goToTheaterGroupCart()" class="bnt-add-bag-checkout">
+                                Checkout
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,253 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <h3> Checkout</h3>
+    </div>
+</section>
+<section class="black-bg">
+<div class="container mobile">
+
+
+<div id="rootwizard" class="tabbable tabs-left">
+<ul>
+    <li><a href="#tab1" target="_self" data-toggle="tab"><span class="mobile-n">1</span><span
+            class="desktop-n">Billing Information</span></a></li>
+    <li><a href="#tab2" target="_self" data-toggle="tab"><span class="mobile-n">3</span><span
+            class="desktop-n">Payment Information</span></a></li>
+    <li><a href="#tab3" data-toggle="tab"><span class="mobile-n">4</span><span class="desktop-n">Order Review</span></a>
+    </li>
+</ul>
+
+<div class="tab-content">
+<div class="tab-pane" id="tab1">
+
+    <form role="form" novalidate name="billingForm" id="billingForm">
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="price">First Name</label>
+                <input class="form-control" type="text"
+                       ng-model="vm.order.b_first_name" name="b_first_name" required="true" placeholder="First Name">
+
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.b_first_name.$touched">
+                    <div ng-show="billingForm.b_first_name.$error.required">Field is required</div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="location">Last Name</label>
+                <input class="form-control" type="text" ng-model="vm.order.b_last_name" required="true"
+                       name="b_last_name" placeholder="Last Name">
+
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.b_last_name.$touched">
+                    <div ng-show="billingForm.b_last_name.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12 floating-label-form-group">
+                <select class="cs-select cs-skin-underline" name="b_country" ng-model="vm.order.b_country" required=True
+                        ng-options="item as item.name for item in vm.countries">
+                    <option value="" ng-if="!vm.order.b_country" disabled selected>Choose a Country</option>
+                </select>
+
+                <div class="error-msg-select" ng-show="billingForm.$submitted || billingForm.b_country.$touched">
+                    <div ng-show="billingForm.b_country.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12 floating-label-form-group">
+                <label for="price">Address</label>
+                <input class="form-control" type="text" ng-model="vm.order.b_street" name="b_street"
+                       placeholder="Address" required="true" >
+
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.b_street.$touched">
+                    <div ng-show="billingForm.b_street.$error.required">Field is required</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-5 col-xs-12 floating-label-form-group">
+                <label for="price">State/Province</label>
+                <input class="form-control" type="text" ng-model="vm.order.b_state" name="b_state"
+                       placeholder="State/Province" required="true">
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.b_state.$touched">
+                    <div ng-show="billingForm.b_state.$error.required">Field is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-5 col-xs-8 floating-label-form-group">
+                <label for="location">City</label>
+                <input class="form-control" type="text" ng-model="vm.order.b_city" required="true" name="b_city" placeholder="City">
+
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.b_city.$touched">
+                    <div ng-show="billingForm.b_city.$error.required">Field is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-2 col-xs-4 floating-label-form-group">
+                <label for="location">ZIP/Postcode</label>
+                <input class="form-control" type="text" ng-model="vm.order.b_zip" required="true" name="b_zip"
+                       placeholder="ZIP/Postcode">
+
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.b_zip.$touched">
+                    <div ng-show="billingForm.b_zip.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="price">Email Address</label>
+                <input class="form-control" type="email" ng-model="vm.order.email" required="true" name="email"
+                       placeholder="Email Address">
+
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.email.$touched">
+                    <div ng-show="billingForm.email.$error.required">Field is required</div>
+                </div>
+                <div class="error-msg" ng-show="billingForm.$submitted || billingForm.email.$touched">
+                    <div ng-show="billingForm.email.$error.email">Enter valid email</div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="location">Phone</label>
+                <input class="form-control" type="text" ng-model="vm.order.phone" name="phone" placeholder="Phone">
+            </div>
+
+        </div>
+    </form>
+</div>
+<div class="tab-pane" id="tab2">
+    <h4> Card Holer Information</h4>
+
+    <form role="form" name="paymentForm" novalidate id="paymentForm">
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="price">First Name</label>
+                <input class="form-control" type="text" name="card_first_name" required="true" ng-model="vm.order.card_first_name"
+                       placeholder="First Name">
+
+                <div class="error-msg" ng-show="paymentForm.$submitted || paymentForm.card_first_name.$touched">
+                    <div ng-show="paymentForm.card_first_name.$error.required">Field is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="location">Last Name</label>
+                <input class="form-control" type="text" name="card_last_name" required="true" ng-model="vm.order.card_last_name"
+                       placeholder="Last Name">
+
+                <div class="error-msg" ng-show="paymentForm.$submitted || paymentForm.card_last_name.$touched">
+                    <div ng-show="paymentForm.card_last_name.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <h4>Card Details</h4>
+
+        <div class="row">
+            <div class="form-group col-xs-12 floating-label-form-group">
+                <select class="cs-select cs-skin-underline" name="creditcardtype" required="true"  ng-model="vm.order.creditcardtype">
+                    <option value="" disabled selected>Card Type</option>
+                    <option value="visa" title="Visa">Visa</option>
+                    <option value="mastercard" title="Master Card">Master Card</option>
+                </select>
+
+                <div class="error-msg-select" ng-show="paymentForm.$submitted || paymentForm.creditcardtype.$touched">
+                    <div ng-show="paymentForm.creditcardtype.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="location">Card Number</label>
+                <input class="form-control" name="acct" type="text" required="true" ng-model="vm.order.acct" placeholder="Card Number">
+
+                <div class="error-msg" ng-show="paymentForm.$submitted || paymentForm.acct.$touched">
+                    <div ng-show="paymentForm.acct.$error.required">Field is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-3 col-xs-5 floating-label-form-group">
+                <select class="cs-select cs-skin-underline" name="cardyear" required="true" ng-model="vm.order.cardyear"
+                        ng-options="item for item in vm.cardyears"
+                        >
+                    <option value="">Year</option>
+                </select>
+
+                <div class="error-msg-select" ng-show="paymentForm.$submitted || paymentForm.cardyear.$touched">
+                    <div ng-show="paymentForm.cardyear.$error.required">Year is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-2 col-xs-4 floating-label-form-group">
+                <select class="cs-select cs-skin-underline" name="cardmonth" required="true"  ng-model="vm.order.cardmonth">
+                    <option value="">Month</option>
+                    <option value="01">Jan</option>
+                    <option value="02">Feb</option>
+                    <option value="03">Mar</option>
+                    <option value="04">Apr</option>
+                    <option value="05">May</option>
+                    <option value="06">Jun</option>
+                    <option value="07">Jul</option>
+                    <option value="08">Aug</option>
+                    <option value="09">Sep</option>
+                    <option value="10">Okt</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+
+                <div class="error-msg-select" ng-show="paymentForm.$submitted || paymentForm.cardmonth.$touched">
+                    <div ng-show="paymentForm.cardmonth.$error.required">Month is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-1 col-xs-3 floating-label-form-group">
+                <label for="location">CVC</label>
+                <input class="form-control" type="text" placeholder="CVC" ng-model="vm.order.cvv2">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="tab-pane" id="tab3">
+
+    <div class="cart-item" ng-repeat="item in ngCart.getCart().items track by $index">
+
+        <div class="product-img-sect">
+            <img ng-src="{{ item.getData().image }}" style="width: 95px;" alt="">
+        </div>
+        <div class="product-name-sect">
+            <p>{{ item.getName() }}<br/>Size: {{ item.getData().size }}<br/>Color: {{ item.getData().color }}</p>
+        </div>
+        <div class="quantity-sect">
+            <p>{{ item.getQuantity() | number }}</p>
+        </div>
+        <div class="price-sect">
+            <p>{{ item.getPrice() | currency}}</p>
+        </div>
+        <div class="total-sect">
+            <p>{{ item.getTotal() | currency }}</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="pull-right">
+            <div class="total-block">
+                <p class="total">Total: <span class="value">{{ ngCart.totalCost() | currency }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="pager wizard">
+    <li class="previous first" style="display:none;"><a href="" class="button-border">First</a></li>
+    <li class="previous"><a href="" class="button-border">Previous</a></li>
+    <li class="last" style="display:none;"><a href="" class="button-border">Last</a></li>
+    <li class="next"><a href="" class="button-border">Next</a></li>
+    <li class="finish" style="display:none;"><a href="" ng-click="vm.goToConfirm()" class="button-border">Finish</a>
+    </li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()" ></ng-include>

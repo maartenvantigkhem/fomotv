@@ -1,0 +1,66 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+<section class="push-on-mobile" id="sb-site">
+    <section class="product-details">
+        <div class="container mobile">
+            <div id="product_view">
+                <div class="dress-cover-box">
+                    <div class="dress-img-preview-box wow fadeInLeft">
+                        <div class="slider-for">
+                            <div ng-repeat="p in selectedDesign.photos"><img ng-src="{{ p.design_photos }}" alt="" /></div>
+                        </div>
+                        <div class="slider-nav">
+                            <div ng-repeat="p in selectedDesign.photos"><img ng-src="{{ p.design_photos }}" alt="" /></div>
+                        </div>
+                    </div>
+                    <div class="dress-opt-box wow fadeInRight">
+                        <h2 ng-bind="selectedDesign.design_name"></h2>
+                        <div class="prod-price" ng-show="showPrice" ng-bind="'$'+selectedDesign.design_ID"></div>
+                        
+                    
+                            <!-- Dress Size -->
+                            <div class="dress-size-select">
+                                Preferred Size:
+                                <select selector
+                                    model="selectedSize"
+                                    options="sizelist"
+                                    ></select>
+                            </div>
+
+                            <!-- Price Select -->
+                            <div class="price-select">
+                                Preferred Cost:
+                                <rzslider rz-slider-model="priceslider.value" rz-slider-options="priceslider.options"></rzslider>
+                            </div>
+
+                            <div class="nps-select">
+                                How likely are you to purchase this?
+                                <rzslider rz-slider-model="npsslider.value" rz-slider-options="npsslider.options"></rzslider>
+                            </div>
+
+                            <!-- Add to Bag -->
+                            <div class="dress-add-bag-box">
+                                <div class="calltoaction">
+                                    <a class="ripplelink" ng-click="castVote()">Vote</a>
+                                </div>
+                            </div>
+                            <div class="dress-detail-box">
+                                <div class="dress-detail">
+                                    <div class="dress-detail-heading">
+                                        <h3>Details, Size & Fit </h3>
+                                        <div class="dress-detail-icon">
+                                            <i class="fa fa-minus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="dress-detail-cont" ng-bind-html="selectedDesign.design_description | nl2br">
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add to Bag Popup Start -->
+        <!-- Add to Bag Popup End -->
+    </section>
+    <ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

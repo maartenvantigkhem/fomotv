@@ -1,0 +1,51 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+ 	<section class="black-bg">
+    	<div class="container mobile">
+          	<div class="row">
+                <a href="/#!/competition/{{ c.id }}" ng-repeat="c in competitionList track by $index" ><div class="copmentition1">
+                        <img ng-src="{{ c.image }}" alt="">
+                        <div class="captions">
+                            <div class="captions-title" ng-bind="c.name"></div>
+                            <div class="captions-subtitle" ng-bind="c.description" ></div>
+                            <div class="captions-bottom">Click to play</div>
+                        </div>
+                    </div></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="black-bg">
+    <div class="container">
+        <div class="heading-sect wow fadeIn" data-wow-delay="0.4s" >
+            <ng-include src="'first-page-text'"></ng-include>
+        </div>
+
+        <div ng-controller="PrizeController" class="main-gallery js-flickity wow fadeIn"
+             data-flickity-options='{ "cellAlign": "left", "contain": "true", "pageDots": "false"}'
+             data-wow-delay="0.7s">
+            <div class="gallery-cell prize-item" ng-repeat="p in getPrizes()" product-carousel>
+				<a id="p1" ng-href="/#!/prize/{{ p.id }}/">
+                    <div ng-class="p.prize_type=='bp'?'best-photo':'random-voter'">
+                        <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+
+                        <div class="prize-content">
+                            <div ng-class="p.prize_type=='bp'?'best-photo-prices':'random-voter-prices'">
+                                <div ng-if="p.sale_price > 0 && p.discount_amount> 0" class="old-price">&nbsp;${{ p.retail_price | number:0 }}&nbsp;</div>
+                                <div ng-if="p.sale_price > 0 && p.discount_amount> 0" class="old-new">${{ p.sale_price }}</div>
+                                <div ng-if="!p.discount_amount" class="old-new">${{ p.retail_price | number:0}}</div>
+                            </div>
+                            <div ng-class="p.prize_type=='bp'?'prize-best-photo':'prize-random-voter'"
+                                 ng-bind="p.prize_type=='bp'?'Best Photo':'Random Voter'">
+                            </div>
+                            <p ng-bind="p.hover_description"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+		</div>
+	</div>
+</section>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

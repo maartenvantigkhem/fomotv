@@ -1,0 +1,83 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <h3>Review and Confirmation</h3>
+    </div>
+</section>
+<section class="black-bg">
+<div class="container mobile">
+    <h3>Personal details</h3>
+
+        <table class="table">
+        <tbody>
+            <tr>
+                <td>Email</td>
+                <td ng-bind="vm.order.email"></td>
+            </tr>
+            <tr><td colspan="2"><h3>Billing details</h3></td></tr>
+            <tr>
+                <td>First Name</td>
+                <td ng-bind="vm.order.b_first_name"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td ng-bind="vm.order.b_last_name"></td>
+            </tr>
+            <tr><td>ZIP code</td><td ng-bind="vm.order.b_zip"></td></tr>
+            <tr><td>Country</td><td ng-bind="vm.order.b_countryname"></td></tr>
+            <tr><td>State</td><td ng-bind="vm.order.b_state"></td></tr>
+            <tr><td>City</td><td ng-bind="vm.order.b_city"></td></tr>
+            <tr><td>Street Address</td><td ng-bind="vm.order.b_street + vm.order.b_street2"></td></tr>
+        </tbody>
+        </table>
+
+        <h3>Ordered Items</h3>
+
+        <div class="cart-item" ng-repeat="item in ngCart.getCart().items track by $index">
+
+            <div class="product-img-sect">
+                <img ng-src="{{ item.getData().image }}" style="width: 95px;" alt="">
+            </div>
+            <div class="product-name-sect">
+                <p>{{ item.getName() }}<br/>Size: {{ item.getData().size }}<br/>Color: {{ item.getData().color }}</p>
+            </div>
+            <div class="quantity-sect">
+                <p>{{ item.getQuantity() | number }}</p>
+            </div>
+            <div class="price-sect">
+                <p>{{ item.getPrice() | currency}}</p>
+            </div>
+            <div class="total-sect">
+                <p>{{ item.getTotal() | currency }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="pull-right">
+                <div class="total-block">
+                    <p class="total">Total: <span class="value">{{ ngCart.totalCost() | currency }}</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-bag-opt-box">
+            	<form>
+                    <div class="add-bag-opt">
+                        <button type="submit" ng-click="vm.cancelOrder()" class="bnt-add-bag-continue add-to-bag-status_close">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="add-bag-opt">
+                        <button type="submit" ng-click="vm.confirmOrder()" class="bnt-add-bag-checkout add-to-bag-status_close">
+                            Confirm
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+</div>
+</section>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()" ></ng-include>

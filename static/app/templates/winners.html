@@ -1,0 +1,75 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+    <section class="header-page">
+        <div class="container">
+            <span class="icon-trophy"></span>
+
+            <h3>Competition Winners</h3>
+        </div>
+    </section>
+    <section class="black-bg">
+    	<div class="container mobile">
+        	<div ng-if="competition_list.length==0" class="tanks-well">
+            Hold tight whilst we run our first competition, and check in for winners at the end of the week.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            </div>
+
+            <div ng-if="competition_list.length>0" ng-repeat="c in competition_list track by $index" class="winner-card">
+                <div class="pull-left" ng-if="c.winners.length > 0">
+                    <div class="fill-div">
+                        <div   ng-show="!c.show_prizes">
+                            <img class="photo-img" ng-src="{{ c.winners[1].photo.image }}" />
+                        </div>
+
+                        <div ng-show="c.show_prizes">
+                            <div class="items-best-prize" >
+                                <div ng-repeat="p in c.prizes" >
+                                    <a id="p1" ng-href="/#!/prize/{{ p.id }}/">
+                                        <div class="image">
+                                            <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info" ng-if="c.winners.length > 0">
+                    <h4>Best Photo Prizes</h4>
+                    <h5>Competition</h5>
+
+                    <p class="competition-name" ng-bind="'#' + c.name"></p>
+
+                    <p class="info-winner-title">End Date</p>
+
+                    <p class="info-winner-detail" ng-bind="convertDate(c.end_date)" >Jan 21, 2015</p>
+
+                    <p class="info-winner-title">Winning Photo </p>
+
+                    <p class="info-winner-title">Winning Voter</p>
+
+                    <p class="info-winner-detail" ng-bind="c.winners[0].user.first_name + ' ' + c.winners[0].user.last_name" ></p>
+                    <a href=""   ng-click="showPrizes($index)" ng-show="!c.show_prizes"><i class="fa fa-chevron-left"></i>Show Prizes</a>
+                    <a href=""   ng-click="showPhoto($index)" ng-show="c.show_prizes" ><i class="fa fa-chevron-left"></i>Show Winning Photo</a>
+                </div>
+            </div>
+        </div>
+	</section>
+    <ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>
+
+
+

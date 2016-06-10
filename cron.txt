@@ -1,0 +1,2 @@
+export DJANGO_SETTINGS_MODULE=fomotv.prod
+0 1 * * *       python /var/www/fomotv.net/fomotv/src/main/winner.py

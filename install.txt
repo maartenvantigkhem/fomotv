@@ -1,0 +1,3 @@
+sudo apt-get install libpq-dev #postgres support
+sudo apt-get install libjpeg-dev #jpeg processing support
+sudo apt-get install libmysqlclient-dev

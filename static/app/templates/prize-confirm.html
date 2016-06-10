@@ -1,0 +1,124 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <h3>Review and Confirmation</h3>
+    </div>
+</section>
+<section class="black-bg">
+<div class="container mobile">
+    <h3>Personal details</h3>
+
+        <form role="form" name="winnerForm" id="winnerForm" novalidate ng-submit="vm.confirm(winnerForm.$valid)">
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="price">First Name</label>
+                <input class="form-control" type="text"
+                       ng-model="vm.order.first_name" name="first_name" required="true" placeholder="First Name">
+
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.first_name.$touched">
+                    <div ng-show="winnerForm.first_name.$error.required">Field is required</div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="location">Last Name</label>
+                <input class="form-control" type="text" ng-model="vm.order.last_name" required="true"
+                       name="last_name" placeholder="Last Name">
+
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.last_name.$touched">
+                    <div ng-show="winnerForm.last_name.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12 floating-label-form-group">
+                <select class="cs-select cs-skin-underline" name="country" ng-model="vm.order.country" required=True
+                        ng-options="item as item.name for item in vm.countries">
+                    <option value="" ng-if="!vm.order.country" disabled selected>Choose a Country</option>
+                </select>
+
+                <div class="error-msg-select" ng-show="winnerForm.$submitted || winnerForm.country.$touched">
+                    <div ng-show="winnerForm.country.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12 floating-label-form-group">
+                <label for="price">Address</label>
+                <input class="form-control" type="text" ng-model="vm.order.street" name="street"
+                       placeholder="Address" required="true" >
+
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.street.$touched">
+                    <div ng-show="winnerForm.street.$error.required">Field is required</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-5 col-xs-12 floating-label-form-group">
+                <label for="price">State/Province</label>
+                <input class="form-control" type="text" ng-model="vm.order.state" name="state"
+                       placeholder="State/Province" required="true">
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.state.$touched">
+                    <div ng-show="winnerForm.state.$error.required">Field is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-5 col-xs-8 floating-label-form-group">
+                <label for="location">City</label>
+                <input class="form-control" type="text" ng-model="vm.order.city" required="true" name="city" placeholder="City">
+
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.city.$touched">
+                    <div ng-show="winnerForm.city.$error.required">Field is required</div>
+                </div>
+            </div>
+            <div class="form-group col-md-2 col-xs-4 floating-label-form-group">
+                <label for="location">ZIP/Postcode</label>
+                <input class="form-control" type="text" ng-model="vm.order.zip" required="true" name="zip"
+                       placeholder="ZIP/Postcode">
+
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.zip.$touched">
+                    <div ng-show="winnerForm.zip.$error.required">Field is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="price">Email Address</label>
+                <input class="form-control" type="email" ng-model="vm.order.email" required="true" name="email"
+                       placeholder="Email Address">
+
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.email.$touched">
+                    <div ng-show="winnerForm.email.$error.required">Field is required</div>
+                </div>
+                <div class="error-msg" ng-show="winnerForm.$submitted || winnerForm.email.$touched">
+                    <div ng-show="winnerForm.email.$error.email">Enter valid email</div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-xs-12 floating-label-form-group">
+                <label for="location">Phone</label>
+                <input class="form-control" type="text" ng-model="vm.order.phone" name="phone" placeholder="Phone">
+            </div>
+
+        </div>
+
+        <div class="add-bag-opt-box">
+                    <div class="add-bag-opt">
+                        <button   ng-click="vm.cancelConfirmation()" class="bnt-add-bag-continue add-to-bag-status_close">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="add-bag-opt">
+                        <button type="submit"  class="bnt-add-bag-checkout add-to-bag-status_close">
+                            Confirm
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+            </div>
+
+             </form>
+</div>
+</section>
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()" ></ng-include>

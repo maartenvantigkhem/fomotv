@@ -1,0 +1,29 @@
+/** Countdown Timer **/
+ul#countdowntimer {
+  list-style: none;
+  margin: 15px 0;
+  padding: 0;
+  display: block;
+  text-align: center;
+}
+
+ul#countdowntimer li { display: inline-block; }
+
+ul#countdowntimer li span {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 20px;
+}
+
+ul#countdowntimer li.seperator {
+  font-size: 30px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+ul#countdowntimer li p {
+  color: #a7abb1;
+  font-size: 10px;
+}
+
+/** Countdown Timer **/^M

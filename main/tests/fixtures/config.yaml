@@ -1,0 +1,5 @@
+- model: main.config
+  pk: 1
+  fields:
+    name: Website settings
+    refresh_week_day: 3

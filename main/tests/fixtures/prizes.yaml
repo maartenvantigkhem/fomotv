@@ -1,0 +1,109 @@
+# prize groups
+
+
+- model: main.prizegroup
+  pk: 3
+  fields:
+    name: next
+    code: next
+
+- model: main.prizegroup
+  pk: 2
+  fields:
+    name: current
+    code: current
+
+- model: main.prizegroup
+  pk: 1
+  fields:
+    name: previous
+    code: previous
+
+
+# prizes
+
+
+- model: main.prize
+  pk: 1
+  fields:
+    number: 1
+    name: Product test 1
+    retail_price: 10
+    sale_price: 10
+    purchase_price: 10
+    sizes: XS
+    size_type: US
+    description: test
+    create_date: '2015-10-10'
+
+- model: main.prize
+  pk: 2
+  fields:
+    number: 2
+    name: Product test 2
+    retail_price: 10
+    sale_price: 10
+    purchase_price: 10
+    sizes: XS
+    size_type: US
+    description: test
+    create_date: '2015-10-10'
+
+- model: main.prize
+  pk: 3
+  fields:
+    number: 3
+    name: Product test 3
+    retail_price: 10
+    sale_price: 10
+    purchase_price: 10
+    sizes: XS
+    size_type: US
+    description: test
+    create_date: '2015-10-10'
+
+
+
+# prize group ref
+
+- model: main.prizegroupref
+  pk: 1
+  fields:
+    prize: 1
+    group: 3
+    prize_type: rv
+
+- model: main.prizegroupref
+  pk: 2
+  fields:
+    prize: 2
+    group: 3
+    prize_type: bp
+
+- model: main.prizegroupref
+  pk: 3
+  fields:
+    prize: 3
+    group: 1
+    prize_type: rv
+
+- model: main.prizegroupref
+  pk: 3
+  fields:
+    prize: 1
+    group: 1
+    prize_type: bp
+
+- model: main.prizegroupref
+  pk: 4
+  fields:
+    prize: 2
+    group: 2
+    prize_type: rv
+
+- model: main.prizegroupref
+  pk: 5
+  fields:
+    prize: 1
+    group: 2
+    prize_type: rv

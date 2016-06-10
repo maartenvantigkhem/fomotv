@@ -1,0 +1,23 @@
+- model: main.competition
+  pk: 1
+  fields:
+    name: Selfi
+    image: competition/party-06_crop2.jpg
+    active_flag: true
+    top_flag: False
+
+- model: main.competition
+  pk: 2
+  fields:
+    name: Selfi1
+    image: competition/big_img.jpg
+    active_flag: true
+    top_flag: true
+
+- model: main.competition
+  pk: 3
+  fields:
+    name: Selfi2
+    image: competition/big_img1.jpg
+    active_flag: true
+    top_flag: False

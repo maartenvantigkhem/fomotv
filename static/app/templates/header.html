@@ -1,0 +1,433 @@
+<nav class="nav-desktop">
+    <div class="container">
+        <div class="main-menu dropdown"><a href="" class="cbutton cbutton--effect-radomir nav-button" id="dLabel2"
+                                           type="button" data-toggle="dropdown" aria-haspopup="true"
+                                           aria-expanded="false"> <span class="cbutton__icon "><em
+                class="fa fa-bars"></em></span> <span class="cbutton__text">Play</span> </a>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <span class="arrow-dropdown"><img src="/static/img/arrow-dropdown.png"/></span>
+                <li><a href="/#!/home"><span class="icon-home"></span> Home</a></li>
+                <li><a ng-href="/#!/competition/{{:: topCompetitionId }}"><span class="icon-control-play"></span>
+                    Play</a></li>
+                <li><a href="/#!/winners"><span class="icon-trophy"></span> Winners</a></li>
+                <li><a href="/#!/shop"><span class="icon-bag"></span> Shop</a></li>
+                <li><a href="" ng-click="selectPhotoFromDesktop()"><span class="icon-cloud-upload"></span> Upload</a>
+                </li>
+            </ul>
+
+        </div>
+        
+        <!-- On a Desktop, the following code takes effect for the User icon on the top right -->
+        <div class="user-menu dropdown">
+            <!-- IF USER IS NOT LOGED IN USE THE CODE BELOW-->
+            <a ng-show="!Auth.isAuth()" class="cbutton cbutton--effect-radomir nav-button" data-toggle="modal"
+               data-target="#signup-opt">
+                <span class="cbutton__icon icon-user-follow"></span>
+                <span class="cbutton__text">Play</span>
+            </a>
+            <a ng-show="Auth.isAuth()" class="cbutton cbutton--effect-radomir nav-button" id="dLabel" type="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="cbutton__icon user-pict"><img ng-src="{{ Auth.getUserAvatar() }}" alt=""/></span>
+                <span class="cbutton__text">User</span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <span class="arrow-dropdown"><img src="/static/img/arrow-dropdown.png"/></span>
+                <li><a ng-click="logout()"><span class="icon-power"></span> Logout</a></li>
+            </ul>
+        </div>
+        
+        
+        <div ng-hide="hideCartFlag" class="user-menu dropdown">
+            <div class="shopping-cart">
+                <span ng-show="ngCart.getTotalItems() > 0" ng-bind="ngCart.getTotalItems()" class="count-items"></span>
+
+                <a ng-show="ngCart.getTotalItems() == 0" href="/#!/shop/" class="cbutton cbutton--effect-radomir nav-button" id="dLabel3" type="button"
+                     aria-haspopup="true" aria-expanded="false"> <span class="cbutton__icon "><em
+                        class="icon-basket"></em></span> <span class="cbutton__text">Play</span> </a>
+
+                <a ng-show="ngCart.getTotalItems() > 0" href="" class="cbutton cbutton--effect-radomir nav-button" id="dLabel3" type="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="cbutton__icon "><em
+                        class="icon-basket"></em></span> <span class="cbutton__text">Play</span> </a>
+                <ul ng-show="ngCart.getTotalItems() > 0" class="dropdown-menu cart" role="menu" aria-labelledby="dLabel3">
+                    <span class="arrow-dropdown"><img src="/static/img/arrow-dropdown.png"/></span>
+                    <li class="product-cart" ng-repeat="item in ngCart.getCart().items track by $index">
+                        <a>
+                            <img ng-src="{{ item.getData().image }}">
+                            <p class="name-product-cart" ng-bind="item.getName()" ></p>
+                            <p>Price<span class="value-price">{{ item.getTotal() | currency }}</span></p>
+                            <p>Size<span class="value-price">L</span></p>
+                        </a>
+                    </li>
+                    <p class="total-cart">Total<span class="total-price">{{ ngCart.totalCost() | currency }}</span></p>
+                    <a type="submit" href="/#!/cart/" class="button-fill-yellow">Proceed to Checkout</a>
+                </ul>
+            </div>
+        </div>
+        <div class="logo-center"><a href="/#!/"><img src="/static/img/prized-w.png" alt=""/></a></div>
+    </div>
+</nav>
+
+<nav class="mobile-inner-pages sb-slide">
+    <ul class="nav-pull-left">
+        <li class="user-menu">
+            <!-- IF USER IS NOT LOGED IN USE THE CODE BELOW-->
+            <a href="" ng-show="!Auth.isAuth()" class="cbutton cbutton--effect-radomir nav-button" data-toggle="modal"
+               data-target="#signup-opt">
+                <span class="cbutton__icon icon-user-follow"></span>
+                <span class="cbutton__text">Play</span>
+            </a>
+            <a ng-show="Auth.isAuth()" class="cbutton cbutton--effect-radomir nav-button sb-toggle-right" type="button">
+                <span class="cbutton__icon user-pict"><img ng-src="{{::Auth.getUserAvatar() }}" alt=""/></span>
+                <span class="cbutton__text">User</span>
+            </a>
+
+
+        </li>
+        <li ng-show="competitionPageFlag"><a class="cbutton cbutton--effect-radomir" type="button" data-toggle="modal"
+                                             data-target="#abuse-opt">
+            <span class="cbutton__icon icon-flag"></span>
+            <span class="cbutton__text">User</span>
+        </a>
+        </li>
+        <li ng-show="competitionPageFlag"><a class="cbutton cbutton--effect-radomir" type="button" data-toggle="modal"
+                                             data-target="#share-opt">
+            <span class="cbutton__icon icon-share"></span>
+            <span class="cbutton__text">User</span>
+        </a>
+        </li>
+
+
+    </ul>
+    <div class="logo-mobile"><a href="/#!/"><img src="/static/img/prized-w.png" alt=""/></a></div>
+    <h3 class="bold" ng-show="competitionPageFlag">Competition <br><span class="competition-name"
+                                                                         ng-bind="'#' + competition.name"></span></h3>
+
+</nav>
+
+<div class="sb-slidebar sb-right" ng-show="Auth.isAuth()">
+    <div class="padding-sidebar">
+        <h4 ng-bind="Auth.getUsername()"></h4>
+        <a class="icon-bag"></a><span class="count-items"></span>
+        <ul class="cart-mobile" id="cart-cont">
+            <li class="product-cart" ng-repeat="item in ngCart.getCart().items track by $index">
+            <a>
+                <img ng-src="{{ item.getData().image }}">
+                <p class="name-product-cart" ng-bind="item.getName()" ></p>
+                <p>Price<span class="value-price">{{ item.getTotal() | currency }}</span></p>
+                <p>Size<span class="value-price">L</span></p>
+                </a>
+            </li>
+            <p class="total-cart">Total<span class="total-price">{{ ngCart.totalCost() | currency }}</span></p>
+            <a type="submit" href="/#!/cart/" class="button-fill-yellow">Proceed to Checkout</a> 
+            
+        </ul>
+        <ul>
+            <li><a ng-click="logout()"><span class="icon-power"></span> Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="modal fade" id="success" tabindex="-1" style="z-index:99999" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog black">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+
+
+                <h1>Success! You've added this item to your bag.</h1>
+
+                <div class="add-bag-opt-box">
+                    <form>
+                        <div class="add-bag-opt">
+                            <button data-dismiss="modal" type="submit" class="bnt-add-bag-continue">
+                                Continue
+                            </button>
+                        </div>
+                        <div class="add-bag-opt">
+                            <button type="submit" ng-click="goToCart()" class="bnt-add-bag-checkout">
+                                Checkout
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="sizes-guide" tabindex="-1" style="z-index:99999" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog black">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Size Guide - White Sued</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="size-guide-popup">
+
+                    <p class="text-center">Free Returns for 100 Days <br>
+                        If it doesn't quite fit, send it back using our free return shipping!</p>
+
+                    <h5>APPAREL</h5>
+                    <table class="table-responsive size-guide-table ">
+                        <thead>
+                        <tr>
+                            <th class="apparel-one">SIZE</th>
+                            <th class="apparel-one">SIZE</th>
+                            <th class="apparel-one">SIZE</th>
+                            <th class="apparel-two">DENIM</th>
+                            <th class="apparel-two">AUS/UK</th>
+                            <th class="apparel-two">US</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>XS</td>
+                            <td>36</td>
+                            <td>0</td>
+                            <td>24/6</td>
+                            <td>6</td>
+                            <td>0 - 2</td>
+                        </tr>
+                        <tr>
+                            <td>S</td>
+                            <td>38</td>
+                            <td>1</td>
+                            <td>26/8</td>
+                            <td>8</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>M</td>
+                            <td>40</td>
+                            <td>2</td>
+                            <td>28/10</td>
+                            <td>10</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>42</td>
+                            <td>3</td>
+                            <td>30/12</td>
+                            <td>12</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>XL</td>
+                            <td>44</td>
+                            <td>4</td>
+                            <td>32/14</td>
+                            <td>14</td>
+                            <td>10</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>MEASUREMENTS</h4>
+
+                    <table class="size-guide-table">
+                        <thead>
+                        <tr>
+                            <th class="apparel-three"></th>
+                            <th class="apparel-three">BUST (cms)</th>
+                            <th class="apparel-three">WAIST (cms)</th>
+                            <th class="apparel-three">HIP (cms)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>AU 6</td>
+                            <td>80</td>
+                            <td>60</td>
+                            <td>85</td>
+                        </tr>
+                        <tr>
+                            <td>AU 8</td>
+                            <td>85</td>
+                            <td>65</td>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <td>AU 10</td>
+                            <td>90</td>
+                            <td>70</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td>AU 12</td>
+                            <td>95</td>
+                            <td>75</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>AU 14</td>
+                            <td>100</td>
+                            <td>80</td>
+                            <td>105</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class="size-guide_close btn-popup-close"><i class="fa fa-times-circle-o"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div class="modal fade" id="product-detail" ng-controller="PrizeDetailController as pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    
+    <div class="modal-dialog black product-det">
+        <div class="modal-content black">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" ng-bind="pd.selectedProduct.name"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="dress-cover-box">
+                    <div class="dress-img-preview-box">
+
+                        <div class="slider-for" >
+                        </div>
+
+                        <div class="slider-nav">
+                        </div>
+                    </div>
+
+                    <div class="dress-opt-box">
+                        <form class="dress-opt-form">
+                            <div class="dress-color-select">
+                                <div class="dress-color-box dropdown1">
+                                    <div class="dress-color">
+                                        <span class="gray-clr"
+                                              ng-style="{'background-color': pd.colorCode == null?pd.selectedProduct.colors[0].color_code:pd.colorCode }" ></span>
+                                    </div>
+                                    <p ng-bind="pd.color == null?pd.selectedProduct.colors[0].name:pd.color"></p>
+
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="dropdown-box">
+                                    <ul class="dress-drop-clr-list">
+                                        <li ng-repeat="c in pd.selectedProduct.colors">
+                                            <div class="dress-color">
+                                                <span class="gray-clr"
+                                                      ng-style="{'background-color': c.color_code }"></span>
+                                            </div>
+                                            <p ng-click="pd.selectColor(c.name, c.color_code)">{{ c.name }}</p>
+
+                                            <div class="clearfix"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="dress-size-select">
+                                <div class="dress-size-box dropdown1">
+                                    <button type="button" class="btn-us-size">US</button>
+                                    <p ng-bind="pd.size == null?'Size':pd.size"></p>
+                                </div>
+                                <div class="dropdown-box">
+                                    <ul class="dress-drop-size-list">
+                                        <li ng-repeat="s in pd.selectedProduct.sizes">
+                                            <p ng-click="pd.selectSize(s)"><span class="size-no">{{ s }}</span> <span class="size-type">&nbsp;</span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="dress-size-guide-box">
+                                <a class="btn-size-guide" type="button" data-toggle="modal" data-target="#sizes-guide">Size
+                                    Guide</a>
+
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div>
+                                <div class="dress-detail">
+                                    <div class="dress-detail-heading">
+                                        <h3>PRICE: <span ng-bind="'$' + pd.selectedProduct.sale_price"></span></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dress-add-bag-box">
+                                <div class="calltoaction">
+                                    <a class="ripplelink" ng-click="pd.addToCart(pd.selectedProduct)">add
+                                    to bag</a>
+                                </div>
+                            </div>
+                            <div class="dress-detail-box">
+                                <div class="dress-detail">
+                                    <div class="dress-detail-heading">
+                                        <h3>Details, Size & Fit </h3>
+
+                                        <div class="dress-detail-icon">
+                                            <i class="fa fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="dress-detail-cont" ng-bind-html="pd.selectedProduct.description | nl2br">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->
+
+
+<section class="tapbar">
+    	<div class="toolbar-cell">
+        	<a href="/#!/" class="cbutton cbutton--effect-radomir">
+            <span class="cbutton__icon icon-home"></span>
+            <span class="cbutton__text">Home</span>
+            </a>
+        </div>
+        <div class="toolbar-cell">
+        	<a ng-href="/#!/competition/{{:: topCompetitionId }}" class="cbutton cbutton--effect-radomir">
+            <span class="cbutton__icon icon-control-play"></span>
+            <span class="cbutton__text">Play</span>
+            </a>
+        </div>
+
+        <div class="toolbar-cell">
+        	<a href="/#!/winners" class="cbutton cbutton--effect-radomir">
+            <span class="cbutton__icon icon-trophy"></span></a>
+            <span class="cbutton__text">Trophy</span>
+        </div>
+        <div class="toolbar-cell">
+        	<a href="" ng-click="showWelcomeVideoPopup()" class="cbutton cbutton--effect-radomir">
+            <span class="cbutton__icon icon-film"></span>
+            <span class="cbutton__text">Video</span>
+            </a>
+        </div>
+        <div class="toolbar-cell">
+        	<a href="" ng-click="selectPhotoFromDesktop()" class="cbutton cbutton--effect-radomir">
+            <span class="cbutton__icon icon-cloud-upload"></span>
+            <span class="cbutton__text">Upload</span>
+            </a>
+        </div>
+    </section>

@@ -1,0 +1,49 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <span class="icon-basket"></span>
+
+        <h3>CHOOSE YOUR COLOR PREFERENCE</h3>
+    </div>
+</section>
+
+<section class="black-bg">
+    <div class="container mobile">
+        <div id="filter">
+            <div class="row" align="center">
+                <div class="col-xs-12">
+                    <div id="container" class="grid">
+                        <div class="element grid-color-swatch" ng-repeat="c in colors track by $index">
+
+                            <div class="prize-item">
+                                <div class="random-voter-filter" >
+                                    <div class="swatchbox" style="background-color:#{{c.color_hex}}"></div>
+                                   
+                                   <!-- Overlay content -->
+                                    <div class="prize-content">
+                                        <h5 ng-bind="c.color_name"></h5>
+                                        <span align="center" 
+                                            class="glyphicon glyphicon glyphicon-heart heart-unselected{{c.color_hex}}" 
+                                            style="font-size:2em;" ng-click="likeclick($index)"></span>
+                                        <span hidden align="center" class="glyphicon glyphicon glyphicon-heart heart-selected{{c.color_hex}}"
+                                                style="font-size:2em; color:red" ng-click="unlikeclick($index)"></span>
+                                        <span style="color:white; font-size:2em;">{{c.up_votes}}</span>
+                                    </div>
+                                    <!-- End Overlay Content -->
+
+                                </div>      
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>

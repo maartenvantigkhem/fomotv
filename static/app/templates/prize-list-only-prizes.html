@@ -1,0 +1,48 @@
+<ng-include src="'/static/app/templates/header.html'" onload="onHeaderLoad()"></ng-include>
+
+<section class="push-on-mobile" id="sb-site">
+<section class="header-page">
+    <div class="container">
+        <span class="icon-basket"></span>
+
+        <h3>All Prizes</h3>
+    </div>
+</section>
+<section class="black-bg">
+    <div class="container mobile">
+        <div id="filter">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="container" class="grid">
+
+                        <div class="grid-sizer"></div>
+                        <div class="element grid-item" ng-repeat="p in prizes track by $index">
+                            <div class="prize-item">
+                                <a ng-href="{{ detailLink + p.id + '/' }}"  >
+                                    <div class="random-voter-filter">
+                                        <img ng-src="{{ p.thumbnail }}" alt="" title=""/>
+
+                                        <div class="prize-content">
+
+                                            <h5 ng-bind="p.name"></h5>
+
+                                            <p class="left-align" ng-bind="p.hoverDescription" ></p>
+                                        </div>
+                                    </div>
+                                    <div class="best-photo-prices" ng-show="showPrice">
+                                        <div class="just-price">${{ p.sale_price }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-include src="'/static/app/templates/footer.html'" onload="onFooterLoad()"></ng-include>
